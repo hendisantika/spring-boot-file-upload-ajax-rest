@@ -1,1 +1,3 @@
-# spring-boot-file-upload-ajax-rest.zip
+# spring-boot-file-upload-ajax-rest
+
+`mvn clean spring-boot:run`
