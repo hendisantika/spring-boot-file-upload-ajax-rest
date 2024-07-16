@@ -3,7 +3,6 @@ package com.hendisantika.controller;
 import com.hendisantika.model.UploadModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -25,7 +24,7 @@ import java.util.stream.Collectors;
 public class RestUploadController {
 
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "/tmp/";
+    private static final String UPLOADED_FOLDER = "/tmp/";
     private final Logger logger = LoggerFactory.getLogger(RestUploadController.class);
 
     //Single file upload
@@ -43,14 +42,14 @@ public class RestUploadController {
 
         try {
 
-            saveUploadedFiles(Arrays.asList(uploadfile));
+            saveUploadedFiles(List.of(uploadfile));
 
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         return new ResponseEntity("Successfully uploaded - " +
-                uploadfile.getOriginalFilename(), new HttpHeaders(), HttpStatus.OK);
+                uploadfile.getOriginalFilename(), HttpStatus.OK);
 
     }
 
